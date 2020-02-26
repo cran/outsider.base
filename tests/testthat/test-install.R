@@ -1,0 +1,17 @@
+context('Testing \'install\'')
+test_that("is_installed() works", {
+  expect_false(outsider.base:::is_installed(pkgnm = 'notapkg'))
+})
+test_that('install and uninstall works', {
+  skip_if(!docker_available)
+  expect_true(dir.exists(file.path(mdl_flpth, 'inst')))
+  expect_true(file.exists(file.path(mdl_flpth, 'inst', 'om.yml')))
+  expect_true(pkg_install(flpth = mdl_flpth))
+  expect_true(image_install(pkgnm = pkgnm, pull = FALSE))
+  pkgs <- utils::installed.packages()
+  pkgnms <- unname(pkgs[ ,'Package'])
+  expect_true(pkgnm %in% pkgnms)
+  expect_true(file.exists(system.file('om.yml', package = pkgnm)))
+  expect_true(pkgnm %in% modules_list())
+  expect_true(uninstall(pkgnm = pkgnm))
+})
