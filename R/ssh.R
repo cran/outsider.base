@@ -5,22 +5,28 @@ sent to this machine\'s Docker.
 
 For more information visit, https://docs.ropensci.org/outsider"
 
+# "ssh" functionality is only suggested at this stage
+.sshpackage_check <- function() {
+  if (!requireNamespace("ssh", quietly = TRUE)) {
+    msg <- paste0("Package ", char("ssh"), " required. Run ",
+                  char("install.packages(\"ssh\")"), ' or similar.')
+    stop(msg, call. = FALSE)
+  }
+}
+
 # Public ----
 #' @name server_connect
 #' @title Connect to a server
 #' @description Connect to a server, make accessible to \code{outsider} and
 #' set-up for \code{outsider} interaction.
+#' @details This requires installation of \code{ssh} package.
 #' @return logical
 #' @param session ssh session, see \code{\link[ssh]{ssh_connect}}
 #' @family public-server
 #' @example examples/server.R
 #' @export
 server_connect <- function(session) {
-  if (!requireNamespace("ssh", quietly = TRUE)) {
-    msg <- paste0("Package ", char("ssh"), " required. Run ",
-                  char("install.packages(\"ssh\")"), ' or similar.')
-    stop(msg, call. = FALSE)
-  }
+  .sshpackage_check()
   # set in options()
   options('outsider-ssh-session' = session)
   # create working dir (assumes a UNIX system)
@@ -33,11 +39,13 @@ server_connect <- function(session) {
 #' @name server_disconnect
 #' @title Disconnect from a server
 #' @description Disconnect from a server and remove from \code{outsider}
+#' @details This requires installation of \code{ssh} package.
 #' @return logical
 #' @family public-server
 #' @example examples/server.R
 #' @export
 server_disconnect <- function() {
+  .sshpackage_check()
   if (is_server_connected()) {
     ssh::ssh_disconnect(getOption(x = 'outsider-ssh-session'))
     options('outsider-ssh-session' = NULL)
@@ -50,9 +58,11 @@ server_disconnect <- function() {
 #' @title Is server connected?
 #' @description Return TRUE if an \code{ssh} session exists with which
 #' \code{outsider} can interact.
+#' @details This requires installation of \code{ssh} package.
 #' @return logical
 #' @family private-server
 is_server_connected <- function() {
+  .sshpackage_check()
   'outsider-ssh-session' %in% names(options()) &&
     ssh::ssh_info(getOption(x = 'outsider-ssh-session'))[['connected']]
 }
@@ -65,6 +75,7 @@ is_server_connected <- function() {
 #' @return ssh session
 #' @family private-server
 server_fetch <- function(verbose) {
+  .sshpackage_check()
   session <- getOption(x = 'outsider-ssh-session')
   if (verbose) {
     info <- ssh::ssh_info(session)
@@ -78,10 +89,12 @@ server_fetch <- function(verbose) {
 #' @title Upload to server
 #' @description Upload file/folder to connected server. File is placed in
 #' working dir on server.
+#' @details This requires installation of \code{ssh} package.
 #' @param fl File/folder to be transferred.
 #' @return Logical
 #' @family private-server
 server_upload <- function(fl) {
+  .sshpackage_check()
   # TODO: ensure windows files are suitable for linux?
   session <- server_fetch(verbose = FALSE)
   ssh::scp_upload(session = session, files = fl, to = ssh_wd,
@@ -98,6 +111,7 @@ server_upload <- function(fl) {
 #' @return Logical
 #' @family private-server
 server_download <- function(origin, dest) {
+  .sshpackage_check()
   session <- server_fetch(verbose = FALSE)
   # create temp dir to host transferred file
   # (difficult to work with filepaths if remote and local machine have
