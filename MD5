@@ -1,4 +1,4 @@
-eb34bc1169870bc26396a93a2fcff7c9 *DESCRIPTION
+6db8c284b6d8565e4345ba6e5f59b403 *DESCRIPTION
 41161812756a12a1866b58d3d5d437c7 *LICENSE
 eb89aca24d6ea5ff2b28e1489b8d0238 *NAMESPACE
 e2d596b2e0ec041f41daca048339afb4 *NEWS.md
@@ -73,5 +73,5 @@ b5d406b50f1f480d12cef083a2868c89 *tests/testthat/test-console.R
 fa1184b0c17f34c5ba5ba9f08ebbe05c *tests/testthat/test-install.R
 af511900b931f4a3b8162a0e9f0f4875 *tests/testthat/test-log.R
 a6b57deaf960a5a89402aa95487da810 *tests/testthat/test-outsider.R
-23a36ec89dc0852f4abd7d559fcd1f1b *tests/testthat/test-ssh.R
+fed0cd314fb596e6216e140a5684440b *tests/testthat/test-ssh.R
 da3bd570785efb86a19c4b2a39d5f31e *tests/testthat/test-sys.R
