@@ -37,7 +37,7 @@ is_docker_available <- function(call_error = TRUE) {
 #' @family private-check
 is_docker_installed <- function() {
   success <- tryCatch(expr = {
-    res <- exec_internal(cmd = 'docker', args = '--help')
+    res <- exec_internal(cmd = 'docker', args = '--help', with_ssh=FALSE)
     res[['status']] == 0
   }, error = function(e) {
     FALSE
@@ -53,7 +53,7 @@ is_docker_installed <- function() {
 #' @family private-check
 is_docker_running <- function() {
   success <- tryCatch(expr = {
-    res <- exec_internal(cmd = 'docker', args = 'ps')
+    res <- exec_internal(cmd = 'docker', args = 'ps', with_ssh=FALSE)
     res[['status']] == 0
   }, error = function(e) {
     FALSE
@@ -67,9 +67,9 @@ is_docker_running <- function() {
 #' @description Runs a docker command with provided arguments
 #' @param args Vector of arguments
 #' @param std_out if and where to direct child process STDOUT.
-#' See \code{\link[sys]{exec}}.
+#' See `sys::exec`.
 #' @param std_err if and where to direct child process STDERR.
-#' See \code{\link[sys]{exec}}.
+#' See `sys::exec`.
 #' @return Logical
 #' @family private-docker
 docker_cmd <- function(args, std_out = TRUE, std_err = TRUE) {

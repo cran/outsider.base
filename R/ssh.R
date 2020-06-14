@@ -21,7 +21,7 @@ For more information visit, https://docs.ropensci.org/outsider"
 #' set-up for \code{outsider} interaction.
 #' @details This requires installation of \code{ssh} package.
 #' @return logical
-#' @param session ssh session, see \code{\link[ssh]{ssh_connect}}
+#' @param session ssh session, see `ssh::ssh_connect`.
 #' @family public-server
 #' @example examples/server.R
 #' @export
@@ -62,15 +62,18 @@ server_disconnect <- function() {
 #' @return logical
 #' @family private-server
 is_server_connected <- function() {
-  .sshpackage_check()
-  'outsider-ssh-session' %in% names(options()) &&
-    ssh::ssh_info(getOption(x = 'outsider-ssh-session'))[['connected']]
+  res <- FALSE
+  if ('outsider-ssh-session' %in% names(options())) {
+    .sshpackage_check()
+    res <- ssh::ssh_info(getOption(x = 'outsider-ssh-session'))[['connected']]
+  }
+  res
 }
 
 #' @name server_fetch
 #' @title Fetch server "session"
 #' @description Return connected session to server.
-#' @details See \code{\link[ssh]{ssh_connect}} for more details.
+#' @details See `ssh::ssh_connect` for more details.
 #' @param verbose Be verbose? Logical.
 #' @return ssh session
 #' @family private-server

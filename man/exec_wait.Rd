@@ -10,7 +10,8 @@ exec_wait(
   std_out = stdout(),
   std_err = stderr(),
   std_in = NULL,
-  timeout = 0
+  timeout = 0,
+  with_ssh = TRUE
 )
 }
 \arguments{
@@ -25,14 +26,16 @@ exec_wait(
 \item{std_in}{Standard in}
 
 \item{timeout}{Timeout}
+
+\item{with_ssh}{Try and run with ssh, default TRUE}
 }
 \value{
 logical
 }
 \description{
-Passes arguments to \code{\link[sys]{exec_wait}}, if a server
-is connected arguments are passed to \code{\link[ssh]{ssh_exec_wait}}
-instead.
+Passes arguments to `sys::exec_wait`, if
+a server is connected arguments are passed to
+`ssh::ssh_exec_wait` instead.
 }
 \seealso{
 Other private-sys: 
