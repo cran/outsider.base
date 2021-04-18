@@ -1,4 +1,4 @@
-3fe1ca38833d42d16ce0002a1308be02 *DESCRIPTION
+baec9dc9c0f30a09ceebe8c499f393a1 *DESCRIPTION
 41161812756a12a1866b58d3d5d437c7 *LICENSE
 eb89aca24d6ea5ff2b28e1489b8d0238 *NAMESPACE
 ab8b7e872a66d719097be6facada0243 *NEWS.md
@@ -7,7 +7,7 @@ ab8b7e872a66d719097be6facada0243 *NEWS.md
 619b7eced1546fb7c48f1dddaad16526 *R/container.R
 9fb7dcb8a705941b7c0a1bca76fec153 *R/docker.R
 ae184af6f0b0c74c82277cf802c1796a *R/identities.R
-1f26b58d853d4d1f3ad0c5e9a049598e *R/install.R
+d4afa8de6a2241843ecf076f1936d6fd *R/install.R
 c93726e600066195d48eacb9d6660100 *R/log.R
 32e004d9f8c8d20b596553ec9fba4870 *R/outsider.R
 b4a06b8456e6ef80eb1ace48d1a78f9f *R/ssh.R
@@ -47,10 +47,10 @@ a30fd0bbd9cee5deccfe8959be0cd26f *man/is_docker_running.Rd
 164518df8693ea7c062a8f37f303dee9 *man/is_installed.Rd
 1dc10c3c2de3842bb1aa32434c15dd67 *man/is_server_connected.Rd
 8824152f5497f0eab64bd7908d984087 *man/log_get.Rd
-9096d004cdf86f026a7ca53ea8100cb5 *man/log_set.Rd
+35674f47b3d219b5852d8cb3fb9490b6 *man/log_set.Rd
 bdc5ec7c2e0493638a75415702c91214 *man/meta_get.Rd
 d4c08c91fda3f3dfca5debfcb5847306 *man/modules_list.Rd
-7f2e4973955d7cfbdaa4678c95bebe31 *man/outsider-class.Rd
+d5ebc5a39ae6f60b9ad29ed2834e04e7 *man/outsider-class.Rd
 28aea8648ad71e506a66206a4137a89d *man/outsider.base.Rd
 2f8443d7c83eef7acaaa02f1c63ab2f0 *man/pkg_install.Rd
 96714f8da82731d5355e65be0ff37053 *man/server_connect.Rd
